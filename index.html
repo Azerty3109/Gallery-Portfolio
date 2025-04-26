@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Gallery</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="emoji-container"></div>
+    <div class="heart-container"></div>
+    <div class="sparkle-container"></div>
+    <div class="glitter-container"></div>
+    <div class="rainbow-container">
+        <div class="rainbow">
+            <div class="rainbow-band"></div>
+            <div class="rainbow-band"></div>
+            <div class="rainbow-band"></div>
+            <div class="rainbow-band"></div>
+            <div class="rainbow-band"></div>
+            <div class="rainbow-band"></div>
+            <div class="rainbow-band"></div>
+        </div>
+    </div>
+    <div class="cloud-container">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+    </div>
+    <div class="cupcake-container">
+        <div class="cupcake">
+            <div class="cupcake-base"></div>
+            <div class="cupcake-frosting"></div>
+            <div class="cupcake-sprinkle"></div>
+            <div class="cupcake-sprinkle"></div>
+            <div class="cupcake-sprinkle"></div>
+            <div class="cupcake-sprinkle"></div>
+            <div class="cupcake-sprinkle"></div>
+        </div>
+    </div>
+    <div class="donut-container">
+        <div class="donut">
+            <div class="donut-ring"></div>
+            <div class="donut-hole"></div>
+            <div class="donut-sprinkle"></div>
+            <div class="donut-sprinkle"></div>
+            <div class="donut-sprinkle"></div>
+            <div class="donut-sprinkle"></div>
+        </div>
+    </div>
+    <div class="girly-container"></div>
+    <header class="gallery-header">
+        <h1>Gallery Portfolio</h1>
+    </header>
+    <div class="gallery-container">
+        <!-- Card 1 -->
+        <a href="emman.html" class="gallery-card">
+            <img src="static/images/emman.png" alt="John Emmanuelle Dimayuga" class="gallery-card-image">
+            <div class="gallery-card-content">
+                <h3 class="gallery-card-title">John Emmanuelle L. Dimayuga</h3>
+            </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="justine.html" class="gallery-card">
+            <img src="static/images/justine.JPG" alt="Justine Carl V. Grindulo" class="gallery-card-image">
+            <div class="gallery-card-content">
+                <h3 class="gallery-card-title">Justine Carl V. Grindulo</h3>
+            </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="jeon.html" class="gallery-card">
+            <img src="static/images/jeon.png" alt="Mikhail Jeon Lorrenzo M. Cordova" class="gallery-card-image">
+            <div class="gallery-card-content">
+                <h3 class="gallery-card-title">Mikhail Jeon Lorrenzo M. Cordova</h3>
+            </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="eron.html" class="gallery-card">
+            <img src="static/images/eron.JPG" alt="Aeron Abriel V. Caraan" class="gallery-card-image">
+            <div class="gallery-card-content">
+                <h3 class="gallery-card-title">Aeron Abriel V. Caraan</h3>
+            </div>
+        </a>
+
+        <!-- Card 5 -->
+        <a href="sherwin.html" class="gallery-card">
+            <img src="static/images/sherwin.png" alt="Sherwin" class="gallery-card-image">
+            <div class="gallery-card-content">
+                <h3 class="gallery-card-title">Sherwin Joseph P. Reyes</h3>
+            </div>
+        </a>
+    </div>
+    <div class="ice-cream-container">
+        <div class="ice-cream">
+            <div class="cone"></div>
+            <div class="scoop scoop-1"></div>
+            <div class="scoop scoop-2"></div>
+            <div class="scoop scoop-3"></div>
+            <div class="drip drip-1"></div>
+            <div class="drip drip-2"></div>
+            <div class="drip drip-3"></div>
+        </div>
+    </div>
+    <script>
+        const emojis = ['🎀', '👗', '👚', '👛', '👜', '👠', '💄', '💅', '💖', '💝', '💕', '💗', '🌸', '🎭', '👑', '🦄', '🌺', '🌷', '🌹', '🍰'];
+        const emojiContainer = document.getElementById('emoji-container');
+        
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.className = 'flying-emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Random starting position
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * window.innerHeight;
+            
+            // Random movement parameters
+            const angle = Math.random() * Math.PI * 5;
+            const speed = 1.5 + Math.random() * 5;
+            const rotationSpeed = (Math.random() - 0.5) * 3;
+            
+            emoji.style.left = `${startX}px`;
+            emoji.style.top = `${startY}px`;
+            
+            emojiContainer.appendChild(emoji);
+            
+            let currentX = startX;
+            let currentY = startY;
+            let rotation = 0;
+            
+            function updatePosition() {
+                currentX += Math.cos(angle) * speed;
+                currentY += Math.sin(angle) * speed;
+                rotation += rotationSpeed;
+                
+                emoji.style.left = `${currentX}px`;
+                emoji.style.top = `${currentY}px`;
+                emoji.style.transform = `rotate(${rotation}deg)`;
+                
+                // Remove emoji when it goes off screen
+                if (currentX < -50 || currentX > window.innerWidth + 50 ||
+                    currentY < -50 || currentY > window.innerHeight + 50) {
+                    emoji.remove();
+                } else {
+                    requestAnimationFrame(updatePosition);
+                }
+            }
+            
+            requestAnimationFrame(updatePosition);
+        }
+        
+        // Create new emojis more frequently
+        setInterval(createEmoji, 800); // Reduced from 2500ms to 800ms
+        
+        // Create more initial emojis
+        for (let i = 0; i < 15; i++) { // Increased from 7 to 15
+            createEmoji();
+        }
+        
+        // Floating hearts animation
+        const heartContainer = document.querySelector('.heart-container');
+        const hearts = ['❤️', '💖', '💝', '💗', '💓', '💕'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // Random starting position
+            const startX = Math.random() * window.innerWidth;
+            heart.style.left = `${startX}px`;
+            heart.style.bottom = '0';
+            
+            heartContainer.appendChild(heart);
+            
+            // Remove heart after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        // Create hearts periodically
+        setInterval(createHeart, 1000);
+        
+        // Create initial hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => createHeart(), i * 200);
+        }
+
+        // Enhanced pink and white sparkle effect
+        const sparkleContainer = document.querySelector('.sparkle-container');
+        const sparkleTypes = ['small', 'medium', 'large'];
+        const sparkleColors = ['white', 'pink', 'pink-light', 'pink-dark'];
+        
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            const type = sparkleTypes[Math.floor(Math.random() * sparkleTypes.length)];
+            const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+            
+            sparkle.className = `sparkle sparkle-${type} sparkle-${color}`;
+            
+            // Random position
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            
+            // Random rotation and scale
+            const rotation = Math.random() * 360;
+            const scale = 0.8 + Math.random() * 0.4;
+            sparkle.style.transform = `rotate(${rotation}deg) scale(${scale})`;
+            
+            sparkleContainer.appendChild(sparkle);
+            
+            // Create trail effect
+            createSparkleTrail(x, y, color);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+        
+        function createSparkleTrail(x, y, color) {
+            const trail = document.createElement('div');
+            trail.className = `sparkle-trail ${color === 'white' ? '' : 'pink-trail'}`;
+            trail.style.left = `${x}px`;
+            trail.style.top = `${y}px`;
+            
+            // Random trail size
+            const size = 1 + Math.random() * 2;
+            trail.style.width = `${size}px`;
+            trail.style.height = `${size}px`;
+            
+            sparkleContainer.appendChild(trail);
+            
+            // Remove trail after animation
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
+        
+        // Create sparkles periodically
+        setInterval(createSparkle, 150);
+        
+        // Create initial sparkles
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => createSparkle(), i * 50);
+        }
+
+        // Glitter effect
+        const glitterContainer = document.querySelector('.glitter-container');
+        const glitterTypes = ['diamond', 'star', 'heart', 'circle'];
+        
+        function createGlitter() {
+            const glitter = document.createElement('div');
+            const type = glitterTypes[Math.floor(Math.random() * glitterTypes.length)];
+            
+            glitter.className = `glitter glitter-${type}`;
+            
+            // Random position
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            
+            glitter.style.left = `${x}px`;
+            glitter.style.top = `${y}px`;
+            
+            // Random rotation
+            const rotation = Math.random() * 360;
+            glitter.style.transform = `rotate(${rotation}deg)`;
+            
+            glitterContainer.appendChild(glitter);
+            
+            // Create trail effect
+            createGlitterTrail(x, y, type);
+            
+            // Remove glitter after animation
+            setTimeout(() => {
+                glitter.remove();
+            }, 4000);
+        }
+        
+        function createGlitterTrail(x, y, type) {
+            const trail = document.createElement('div');
+            trail.className = `glitter-trail ${type === 'heart' ? 'pink-glitter-trail' : ''}`;
+            trail.style.left = `${x}px`;
+            trail.style.top = `${y}px`;
+            
+            // Random trail size
+            const size = 1 + Math.random() * 3;
+            trail.style.width = `${size}px`;
+            trail.style.height = `${size}px`;
+            
+            glitterContainer.appendChild(trail);
+            
+            // Remove trail after animation
+            setTimeout(() => {
+                trail.remove();
+            }, 1500);
+        }
+        
+        // Create glitters periodically
+        setInterval(createGlitter, 200);
+        
+        // Create initial glitters
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => createGlitter(), i * 100);
+        }
+
+        // Create girly elements
+        function createBow(x, y) {
+            const bow = document.createElement('div');
+            bow.className = 'bow';
+            bow.style.left = x + 'px';
+            bow.style.top = y + 'px';
+            
+            const center = document.createElement('div');
+            center.className = 'bow-center';
+            
+            const leftLoop = document.createElement('div');
+            leftLoop.className = 'bow-loop left';
+            
+            const rightLoop = document.createElement('div');
+            rightLoop.className = 'bow-loop right';
+            
+            bow.appendChild(center);
+            bow.appendChild(leftLoop);
+            bow.appendChild(rightLoop);
+            
+            return bow;
+        }
+
+        function createFlower(x, y) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = x + 'px';
+            flower.style.top = y + 'px';
+            
+            const center = document.createElement('div');
+            center.className = 'flower-center';
+            
+            for (let i = 0; i < 4; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                flower.appendChild(petal);
+            }
+            
+            flower.appendChild(center);
+            return flower;
+        }
+
+        function createRibbon(x, y, width) {
+            const ribbon = document.createElement('div');
+            ribbon.className = 'ribbon';
+            ribbon.style.left = x + 'px';
+            ribbon.style.top = y + 'px';
+            ribbon.style.width = width + 'px';
+            return ribbon;
+        }
+
+        // Add girly elements to the container
+        const girlyContainer = document.querySelector('.girly-container');
+
+        // Create initial girly elements
+        for (let i = 0; i < 10; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            
+            if (i % 3 === 0) {
+                girlyContainer.appendChild(createBow(x, y));
+            } else if (i % 3 === 1) {
+                girlyContainer.appendChild(createFlower(x, y));
+            } else {
+                girlyContainer.appendChild(createRibbon(x, y, 50 + Math.random() * 50));
+            }
+        }
+
+        // Create new girly elements periodically
+        setInterval(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const type = Math.floor(Math.random() * 3);
+            
+            let element;
+            if (type === 0) {
+                element = createBow(x, y);
+            } else if (type === 1) {
+                element = createFlower(x, y);
+            } else {
+                element = createRibbon(x, y, 50 + Math.random() * 50);
+            }
+            
+            girlyContainer.appendChild(element);
+            
+            // Remove element after animation completes
+            setTimeout(() => {
+                element.remove();
+            }, 5000);
+        }, 2000);
+    </script>
+</body>
+</html> 
